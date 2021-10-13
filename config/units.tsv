@@ -1,0 +1,2 @@
+sample_name	unit_name	fq1	fq2	adapters	strandedness
+Library_PCR_for_NGS-1	lane1	/bio/qc/pipelines/RawReadDeliver/AutoDelivery/data/TBD210997_13130_4516_20210916/Sample_sample_Library_PCR_for_NGS-1/sample_Library_PCR_for_NGS-1_1.fq.gz	/bio/qc/pipelines/RawReadDeliver/AutoDelivery/data/TBD210997_13130_4516_20210916/Sample_sample_Library_PCR_for_NGS-1/sample_Library_PCR_for_NGS-1_2.fq.gz	truseq	none

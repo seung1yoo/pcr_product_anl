@@ -25,8 +25,13 @@ class Product:
                 product_seq = str(record.seq[loc5+len(primer5):loc3])
                 if not len(product_seq) in [33]:
                     continue
-                if '*' in Seq(product_seq).translate():
-                    continue
+                #log
+                items = [record.id]
+                items.append('sense')
+                items.append('found_both')
+                items.append(loc5)
+                items.append(loc3)
+                outtsv.write('{0}\n'.format('\t'.join([str(x) for x in items])))
                 #fna
                 product_record = SeqRecord(
                     Seq(product_seq),
@@ -35,19 +40,14 @@ class Product:
                 )
                 SeqIO.write(product_record, outfna, 'fasta')
                 #faa
+                if '*' in Seq(product_seq).translate():
+                    continue
                 product_record = SeqRecord(
                     Seq(product_seq).translate(),
                     id=f"{record.id}_product",
                     description=f"strand=sense"
                 )
                 SeqIO.write(product_record, outfaa, 'fasta')
-                #
-                items = [record.id]
-                items.append('sense')
-                items.append('found_both')
-                items.append(loc5)
-                items.append(loc3)
-                outtsv.write('{0}\n'.format('\t'.join([str(x) for x in items])))
             elif not loc5 in [-1] and loc3 in [-1]:
                 items = [record.id]
                 items.append('sense')
@@ -72,8 +72,13 @@ class Product:
                 product_seq = str(record.seq[loc3+len(primer3):loc5].reverse_complement())
                 if not len(product_seq) in [33]:
                     continue
-                if '*' in Seq(product_seq).translate():
-                    continue
+                #log
+                items = [record.id]
+                items.append('antisense')
+                items.append('found_both')
+                items.append(loc5)
+                items.append(loc3)
+                outtsv.write('{0}\n'.format('\t'.join([str(x) for x in items])))
                 #fna
                 product_record = SeqRecord(
                     Seq(product_seq),
@@ -82,19 +87,14 @@ class Product:
                 )
                 SeqIO.write(product_record, outfna, 'fasta')
                 #faa
+                if '*' in Seq(product_seq).translate():
+                    continue
                 product_record = SeqRecord(
                     Seq(product_seq).translate(),
                     id=f"{record.id}_product",
                     description=f"strand=antisense"
                 )
                 SeqIO.write(product_record, outfaa, 'fasta')
-                #
-                items = [record.id]
-                items.append('antisense')
-                items.append('found_both')
-                items.append(loc5)
-                items.append(loc3)
-                outtsv.write('{0}\n'.format('\t'.join([str(x) for x in items])))
             elif not loc5 in [-1] and loc3 in [-1]:
                 items = [record.id]
                 items.append('antisense')
